@@ -46,6 +46,12 @@ class Popup
       document.body.append(object);
     }
 
+    // On fully spawned
+    setTimeout(() => {
+      this.object.style.minHeight = this.object.style.height;
+      this.object.style.height = "auto";
+    }, 300);
+
     // Opts
     if (typeof opt.dieAfter == "number") {
       setTimeout(() => {
@@ -54,6 +60,10 @@ class Popup
     }
   }
 
+  /**
+   * Add the styling for the popup objects.  
+   * If this isn't run before the first use of the popup, it will be automatically added with default settings.
+   */
   static addStyle() {
     const style = document.createElement("style");
     style.id = "ion_popupstyle";
@@ -110,6 +120,8 @@ class Popup
   }
 
   close() {
+    this.object.style.height = this.object.style.minHeight;
+    this.object.style.minHeight = "0px";
     this.object.setAttribute("state", "close");
     setTimeout(() => {
       try {
@@ -125,6 +137,7 @@ class Popup
   }
 }
 
+// Node JS support
 try {
   exports.Popup = Popup;
 } catch {}
