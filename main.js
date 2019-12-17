@@ -49,7 +49,7 @@ class Popup
     // On fully spawned
     setTimeout(() => {
       this.object.style.minHeight = this.object.style.height;
-      this.object.style.height = "auto";
+      // this.object.style.height = "auto";
     }, 300);
 
     // Opts
